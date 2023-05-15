@@ -5,6 +5,8 @@ import asab.storage
 import logging
 import os
 
+from .storage import Storage
+
 L = logging.getLogger(__name__)
 
 asab.Config.add_defaults(
@@ -38,3 +40,5 @@ class ProductAggregatorApp(asab.Application):
 				asab.web.rest.JsonExceptionMiddleware
 		)
 
+		# Initialize services
+		self.Storage = Storage()
