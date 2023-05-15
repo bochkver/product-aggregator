@@ -47,6 +47,7 @@ class ProductAggregatorApp(asab.Application):
 
 		from .aggregator.handler import AggregatorWebHandler
 		from .aggregator.service import AggregatorService
+		from .offers_update.service import OffersUpdateService
 
 		self.AggregatorService = AggregatorService(
 			self,
@@ -55,3 +56,9 @@ class ProductAggregatorApp(asab.Application):
 			token_repository=self.TokenRepository
 		)
 		self.AggregatorWebHandler = AggregatorWebHandler(self, self.AggregatorService)
+		self.OffersUpdateService = OffersUpdateService(
+			self,
+			service_name="OffersUpdateService",
+			storage=self.Storage,
+			token_repository=self.TokenRepository
+		)
