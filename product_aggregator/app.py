@@ -6,6 +6,7 @@ import logging
 import os
 
 from .storage import Storage
+from .token_repository import TokenRepository
 
 L = logging.getLogger(__name__)
 
@@ -42,3 +43,5 @@ class ProductAggregatorApp(asab.Application):
 
 		# Initialize services
 		self.Storage = Storage()
+		self.TokenRepository = TokenRepository(self.Storage)
+
