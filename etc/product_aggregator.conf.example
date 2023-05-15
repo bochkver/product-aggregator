@@ -1,0 +1,10 @@
+[mysql]
+host=my.data.base
+port=3306
+user=poweruser
+password=qwerty123456
+database=db
+
+[offers]
+host=https://python.exercise.applifting.cz/api/v1/
+token=your-token-goes-here

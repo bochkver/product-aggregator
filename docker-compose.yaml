@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  my-aggregator:
+    build: .
+    ports:
+      - "8080:8080"
+    restart: on-failure:3
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:latest
+    restart: on-failure:3
+    environment:
+      MYSQL_DATABASE: "db"
+      MYSQL_ROOT_PASSWORD: "qwerty"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    expose:
+      - "3306"
+    healthcheck:
+        test: "mysql -uroot -p$$MYSQL_ROOT_PASSWORD -e 'SELECT 1'"
+        interval: 1s
+        retries: 120
+
+volumes:
+  mysql-data:
