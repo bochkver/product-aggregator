@@ -13,7 +13,8 @@ class OffersUpdateService(asab.Service):
 		self.Storage = storage
 		self.TokenRepository = token_repository
 		self.App = app
-		self.App.PubSub.subscribe("Application.tick/60!", self.update_offers_table)
+		# because of free tier DB on Heroku, we would synchronize offers only once an hour
+		self.App.PubSub.subscribe("Application.tick/3600!", self.update_offers_table)
 
 	async def update_offers_table(self, _):
 		product_ids = self.Storage.get_product_ids()
