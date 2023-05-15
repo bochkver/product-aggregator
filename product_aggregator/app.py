@@ -45,3 +45,13 @@ class ProductAggregatorApp(asab.Application):
 		self.Storage = Storage()
 		self.TokenRepository = TokenRepository(self.Storage)
 
+		from .aggregator.handler import AggregatorWebHandler
+		from .aggregator.service import AggregatorService
+
+		self.AggregatorService = AggregatorService(
+			self,
+			service_name="AggregatorService",
+			storage=self.Storage,
+			token_repository=self.TokenRepository
+		)
+		self.AggregatorWebHandler = AggregatorWebHandler(self, self.AggregatorService)
