@@ -13,7 +13,7 @@ L = logging.getLogger(__name__)
 asab.Config.add_defaults(
 {
         "web": {
-                "listen": "0.0.0.0 8080"
+                "listen": "0.0.0.0 {}".format(os.environ.get("PORT", 8080))
         },
 		"mysql": {
 			"host": "db",
