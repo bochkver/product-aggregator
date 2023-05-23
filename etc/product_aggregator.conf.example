@@ -1,8 +1,8 @@
 [mysql]
-host=my.data.base
+host=db
 port=3306
-user=poweruser
-password=qwerty123456
+user=root
+password=qwerty
 database=db
 
 [offers]
